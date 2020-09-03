@@ -1,7 +1,11 @@
 package aufgabe.fuenf;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.PriorityQueue;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TaskScheduler {
   public static class Task implements Comparable {
@@ -62,6 +66,34 @@ public class TaskScheduler {
   public static void main(String args[]) {
     var tasks = new PriorityQueue<Task>();
     var machines = new ArrayList<Machine>();
-    /// * TODO: e r g a e n z e n * /
+    Pattern pattern = Pattern.compile("\\d+");
+    String input = "(1,3) (1,4) (2,5) (3,7) (4,7) (6,9) (7,8)";
+    String[] inputs = input.split(" ");
+    Arrays.stream(inputs)
+            .map(s -> parseTask(s, pattern))
+            .forEach(tasks::add);
+    for (Task task : tasks) {
+      machines.stream()
+          .filter(machine -> !machine.conflicts(task))
+          .findFirst()
+          .ifPresentOrElse(
+              machine -> machine.add(task),
+              () -> {
+                var newMachine = new Machine();
+                newMachine.add(task);
+                machines.add(newMachine);
+              });
+    }
+    machines.forEach(
+            System.out::println);
+  }
+
+  private static Task parseTask(String input, Pattern pattern) {
+    Matcher matcher = pattern.matcher(input);
+    matcher.find();
+    String first = matcher.group();
+    matcher.find();
+    String second = matcher.group();
+    return new Task(Integer.parseInt(first), Integer.parseInt(second));
   }
 }
