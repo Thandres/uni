@@ -1,3 +1,6 @@
 Damit Complex auch im generischen Baum verwendet werden kann, muss noch equals()
 überschrieben werden, da real und imaginär Teil unterschiedlich sein können,
 aber den gleichen Betrag liefern können.
+Wenn man equals() überschreibt sollte man eigentlich auch hashcode() überschreiben,
+da das für das korrekte verhalten in z.B. Hashmaps notwendig ist, aber für dieses Beispiel
+reicht es equals() zu überschreiben.
