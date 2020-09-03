@@ -12,7 +12,8 @@ public class MedianRekursiv {
     if (size == 1) {
       return values.get(0);
     } else {
-      int randomIndex = RANDOM.nextInt() % size;
+      int randomIndex = Math.abs(RANDOM.nextInt()) % size;
+
       var randomVal = values.get(randomIndex);
       Map<Integer, List<Double>> collect =
           values.stream()
