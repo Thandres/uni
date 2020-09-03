@@ -1,3 +1,5 @@
+package aufgabe.eins;
+
 public class Bruch {
   private final int zaehler;
   private final int nenner;

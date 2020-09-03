@@ -1,3 +1,5 @@
+package aufgabe.eins;
+import aufgabe.eins.Bruch;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
