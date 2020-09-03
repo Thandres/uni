@@ -1,0 +1,3 @@
+Damit Complex auch im generischen Baum verwendet werden kann, muss noch equals()
+überschrieben werden, da real und imaginär Teil unterschiedlich sein können,
+aber den gleichen Betrag liefern können.
